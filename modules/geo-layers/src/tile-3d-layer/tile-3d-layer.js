@@ -166,20 +166,29 @@ export default class Tile3DLayer extends CompositeLayer {
     }
   }
 
+  getPickingInfo({info}) {
+    const {layerMap} = this.state;
+    const tileId = info.object.id;
+    info.object = layerMap[tileId] && layerMap[tileId].tile;
+    return info;
+  }
+
   _create3DModelTileLayer(tileHeader) {
     const {gltf, instances, cartographicOrigin, modelMatrix} = tileHeader.content;
+    const {pickable} = this.props;
 
     const SubLayerClass = this.getSubLayerClass('scenegraph', ScenegraphLayer);
 
     return new SubLayerClass(
       {
-        _lighting: 'pbr'
+        _lighting: 'pbr',
+        pickable
       },
       this.getSubLayerProps({
         id: 'scenegraph'
       }),
       {
-        id: `${this.id}-scenegraph-${tileHeader.fullUri}`,
+        id: `${tileHeader.id}`,
         // Fix for ScenegraphLayer.modelMatrix, under flag in deck 7.3 to avoid breaking existing code
         data: instances || [{}],
         scenegraph: gltf,
@@ -207,12 +216,13 @@ export default class Tile3DLayer extends CompositeLayer {
       return null;
     }
 
-    const {pointSize, getPointColor} = this.props;
+    const {pointSize, getPointColor, pickable} = this.props;
     const SubLayerClass = this.getSubLayerClass('pointcloud', PointCloudLayer);
 
     return new SubLayerClass(
       {
-        pointSize
+        pointSize,
+        pickable
       },
       this.getSubLayerProps({
         id: 'pointcloud'

@@ -125,6 +125,11 @@ export default class PointCloudLayer extends Layer {
       .draw();
   }
 
+  getPickingInfo({info, mode}) {
+    info.object = {id: this.props.id};
+    return info;
+  }
+
   _getModel(gl) {
     // a triangle that minimally cover the unit circle
     const positions = [];

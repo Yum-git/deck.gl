@@ -99,6 +99,11 @@ export default class ScenegraphLayer extends Layer {
     }
   }
 
+  getPickingInfo({info, mode}) {
+    info.object = {id: this.props.id};
+    return info;
+  }
+
   finalizeState() {
     super.finalizeState();
     this._deleteScenegraph();

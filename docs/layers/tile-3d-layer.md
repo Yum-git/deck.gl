@@ -122,6 +122,12 @@ const layer = new Tile3DLayer({
 })
 ```
 
+##### `pickable` (Boolean, Optional)
+
+- Default: false
+
+When enable picking, the picking info will contain the selected `tile` accessed by`info.object`.
+
 ### Data Accessors
 
 ##### `getPointColor` (Function|Array, Optional)
@@ -167,6 +173,10 @@ The Tile3DLayer renders the following sublayers based on tile [format](https://g
 * `pointcloud` - a [PointCloudLayer](/docs/layers/point-cloud-layer.md) rendering all the tiles with Point Cloud format (`pnts`).
 
 Follow [CompositeLayer](/docs/api-reference/composite-layer.md#_subLayerProp) and example in this layer doc to see how to override sub layer props.
+
+## picking
+
+
 
 ## Source
 
