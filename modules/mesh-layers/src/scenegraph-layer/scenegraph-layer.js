@@ -99,8 +99,8 @@ export default class ScenegraphLayer extends Layer {
     }
   }
 
-  getPickingInfo({info, mode}) {
-    info.object = {id: this.props.id};
+  getPickingInfo({info, sourceLayer}) {
+    info.sourceLayer = sourceLayer;
     return info;
   }
 

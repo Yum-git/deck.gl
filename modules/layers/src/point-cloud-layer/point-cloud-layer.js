@@ -125,8 +125,8 @@ export default class PointCloudLayer extends Layer {
       .draw();
   }
 
-  getPickingInfo({info, mode}) {
-    info.object = {id: this.props.id};
+  getPickingInfo({info, sourceLayer}) {
+    info.sourceLayer = sourceLayer;
     return info;
   }
 

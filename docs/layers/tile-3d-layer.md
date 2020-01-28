@@ -174,10 +174,6 @@ The Tile3DLayer renders the following sublayers based on tile [format](https://g
 
 Follow [CompositeLayer](/docs/api-reference/composite-layer.md#_subLayerProp) and example in this layer doc to see how to override sub layer props.
 
-## picking
-
-
-
 ## Source
 
 [modules/geo-layers/src/tile-3d-layer](https://github.com/uber/deck.gl/tree/master/modules/geo-layers/src/tile-3d-layer)
