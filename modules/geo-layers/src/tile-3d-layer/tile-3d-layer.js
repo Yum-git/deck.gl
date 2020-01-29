@@ -59,7 +59,7 @@ export default class Tile3DLayer extends CompositeLayer {
     const layerId = sourceLayer && sourceLayer.id;
     if (layerId) {
       const tileId = layerId.substring(this.id.length + 1).split('-')[1];
-      info.tile = layerMap[tileId] && layerMap[tileId].tile;
+      info.object = layerMap[tileId] && layerMap[tileId].tile;
     }
 
     return info;
