@@ -54,9 +54,8 @@ export default class Tile3DLayer extends CompositeLayer {
     }
   }
 
-  getPickingInfo({info}) {
+  getPickingInfo({info, sourceLayer}) {
     const {layerMap} = this.state;
-    const sourceLayer = info.sourceLayer;
     const layerId = sourceLayer && sourceLayer.id;
     if (layerId) {
       const tileId = layerId.substring(this.id.length + 1).split('-')[1];
@@ -180,14 +179,12 @@ export default class Tile3DLayer extends CompositeLayer {
 
   _create3DModelTileLayer(tileHeader) {
     const {gltf, instances, cartographicOrigin, modelMatrix} = tileHeader.content;
-    const {pickable} = this.props;
 
     const SubLayerClass = this.getSubLayerClass('scenegraph', ScenegraphLayer);
 
     return new SubLayerClass(
       {
-        _lighting: 'pbr',
-        pickable
+        _lighting: 'pbr'
       },
       this.getSubLayerProps({
         id: 'scenegraph'
@@ -221,13 +218,12 @@ export default class Tile3DLayer extends CompositeLayer {
       return null;
     }
 
-    const {pointSize, getPointColor, pickable} = this.props;
+    const {pointSize, getPointColor} = this.props;
     const SubLayerClass = this.getSubLayerClass('pointcloud', PointCloudLayer);
 
     return new SubLayerClass(
       {
-        pointSize,
-        pickable
+        pointSize
       },
       this.getSubLayerProps({
         id: 'pointcloud'

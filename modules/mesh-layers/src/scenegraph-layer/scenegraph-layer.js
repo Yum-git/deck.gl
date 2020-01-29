@@ -99,11 +99,6 @@ export default class ScenegraphLayer extends Layer {
     }
   }
 
-  getPickingInfo({info, sourceLayer}) {
-    info.sourceLayer = sourceLayer;
-    return info;
-  }
-
   finalizeState() {
     super.finalizeState();
     this._deleteScenegraph();
