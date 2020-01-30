@@ -4,7 +4,6 @@ export default `#version 300 es
 // Scale the model
 uniform float sizeScale;
 uniform bool composeModelMatrix;
-// uniform float tileSize;
 
 // Primitive attributes
 in vec3 positions;
@@ -41,19 +40,17 @@ void main(void) {
 
   if (composeModelMatrix) {
     DECKGL_FILTER_SIZE(pos, geometry);
-    gl_Position = project_position_to_clipspace(pos + instancePositions, instancePositions64Low, vec3(0.0), geometry.position);
+    gl_Position = project_position_to_clipspace(pos + instancePositions, instancePositions64Low, vec3(0.0), position_commonspace);
   }
   else {
     pos = project_size(pos);
     DECKGL_FILTER_SIZE(pos, geometry);
-    gl_Position = project_position_to_clipspace(instancePositions, instancePositions64Low, pos, geometry.position);
+    gl_Position = project_position_to_clipspace(instancePositions, instancePositions64Low, pos, position_commonspace);
   }
 
+  geometry.position = position_commonspace;
   DECKGL_FILTER_GL_POSITION(gl_Position, geometry);
 
   DECKGL_FILTER_COLOR(vColor, geometry);
-
-  // geometry.uv = positions.xy / tileSize;
-  // vTexCoord = positions.xy / tileSize;
 }
 `;
